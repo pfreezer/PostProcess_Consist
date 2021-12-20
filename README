@@ -1,0 +1,25 @@
+For simple test run in this folder, just do
+python3 consist_postprocess.py
+
+If you want to set INPUT/OUTPUT file names, please refer to options by "python3 consist_postprocess.py --help":
+
+usage: consist_postprocess.py [-h] [-i INPUT] [-t TOKEN] [--no_fulltext]
+                              [--pred_ft PRED_FT] [--token_ft TOKEN_FT]
+                              [-o OUTPUT]
+
+Post Processing with Consistency Check
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        input prediction file, Default is 'predictions.txt'
+  -t TOKEN, --token TOKEN
+                        token info file in json format, Default is 'test.json'
+  --no_fulltext         doing consistency check NOT based on fulltext
+  --pred_ft PRED_FT     prediction file of fulltext, Default is
+                        'predictions_ft.txt'
+  --token_ft TOKEN_FT   token info file of fulltext in json format, Default is
+                        'test_ft.json'
+  -o OUTPUT, --output OUTPUT
+                        output prediction file, Default is
+                        'predictions_ppConsist.txt'
