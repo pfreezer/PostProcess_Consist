@@ -205,7 +205,7 @@ for line in fjson[0]:
 
     for i in range(len(data["tokens"])):
         phrase = data["tokens"][i]
-        if data["ner_tags"][i] != 'O': break
+        if data["ner_tags"][i] != 'O': continue
         elif phrase in label[pubid].keys():
             label_count[pubid][phrase]['O'] += 1
         for j in range(i+1, len(data["tokens"])):
@@ -237,7 +237,7 @@ if use_fulltext:
 
         for i in range(len(data["tokens"])):
             phrase = data["tokens"][i]
-            if data["ner_tags"][i] != 'O': break
+            if data["ner_tags"][i] != 'O': continue
             elif phrase in label[pubid].keys():
                 label_count[pubid][phrase]['O'] += 1
             for j in range(i+1, len(data["tokens"])):
@@ -248,9 +248,9 @@ if use_fulltext:
     fjson[1].close()
 
 # write label info to file
-flabel = open("phrase_label.dat",'w')
+#flabel = open("phrase_label.dat",'w')
 for k in label.keys():
-    flabel.writelines(k+'\n')
+    #flabel.writelines(k+'\n')
     
     for j in label[k].keys():
         tmpmax = max(label_count[k][j].values())
@@ -259,14 +259,14 @@ for k in label.keys():
             if label_count[k][j][e] == tmpmax: tmptags.append(e)
         if len(tmptags)==1:
             label[k][j] = tmptags[0]
-            if label[k][j] == 'O':
-                print ("Warning: ",j,"labeled as O")
-                flabel.writelines("  "+j+'|'+label[k][j]+'|'+'\n')
-            else:
-                flabel.writelines("  "+j+'|'+label[k][j]+'|'+'\n')
+            #if label[k][j] == 'O':
+            #    print ("Warning: ",j,"labeled as O")
+            #    flabel.writelines("  "+j+'|'+label[k][j]+'|'+'\n')
+            #else:
+            #    flabel.writelines("  "+j+'|'+label[k][j]+'|'+'\n')
         else:
             print ("conflicts found in",'|',k,'|',j, '|',label_count[k][j],'|',label_true[k][j])
-flabel.close()
+#flabel.close()
 
 print ("Mention labeling finished..")
 print ()
